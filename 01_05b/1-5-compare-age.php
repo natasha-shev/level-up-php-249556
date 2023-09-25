@@ -1,5 +1,7 @@
 <?php
 
+use Person as GlobalPerson;
+
 class Person {
 	private $name;
 	private $dob;
@@ -28,8 +30,17 @@ class Person {
 	}
 }
 
-function compare_ages( $p1, $p2) {
-	// Challenge: define this function
+function compare_ages(Person $p1, Person $p2) {
+	$agePerson1 = $p1->get_age();
+	$agePerson2 = $p2->get_age();
+
+	if ($agePerson1 === $agePerson2) {
+		return $p1->get_name() . ' and ' . $p2->get_name() . ' are the same age';
+	} elseif ($agePerson1 > $agePerson2) {
+		return $p1->get_name() . ' is older than ' . $p2->get_name();
+	}
+
+	return $p1->get_name() . ' is younger than ' . $p2->get_name();
 }
 
 
