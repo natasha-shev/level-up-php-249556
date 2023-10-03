@@ -1,8 +1,10 @@
 <?php 
 
-function is_palindrome( $str ) {
-	// Challenge: define this function
+function is_palindrome( $str ): bool {
+	$str = strtolower($str);
+	$str = preg_replace('/[^a-z]/', '', $str);
 
+	return $str === strrev($str);
 }
 
 $strings = array( 'Race Car', 'Amore, Roma', 'Hello World!', 'Madam, in Eden, I\'m Adam.', 'Joe wore more than in store' );
