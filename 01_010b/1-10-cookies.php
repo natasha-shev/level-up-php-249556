@@ -1,11 +1,15 @@
 <?php 
 function process_form() {
 	foreach( $_POST as $label => $value ) {
-		if ( 'submit' !== $label ) {
-			echo '<p><b>' . ucfirst( $label ) . '</b>: ' . $value . '</p>';
+		if ($label === 'name') {
+			setcookie('name', $value);
 		}
 	}
-} 
+}
+
+if (isset($_POST['name'])) {
+	setcookie('name', $_POST['name']);
+}
 
 ?>
 
@@ -26,7 +30,7 @@ function process_form() {
 			<form name="contact" method="POST">
 				<div>
 					<label for="name">Name:</label>
-					<input type="text" name="name" placeholder="What's Your Name?""/>
+					<input type="text" name="name" placeholder="What's Your Name?" value="<?php $_COOKIE['name'] ?>"/>
 				</div>
 				<div>
 					<label for="email">Email:</label>
