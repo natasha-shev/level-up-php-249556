@@ -1,11 +1,13 @@
 <?php 
 function process_form() {
-	// Challenge: Refactor this function
-	foreach( $_POST as $label => $value ) {
-		if ( 'submit' !== $label ) {
-			echo '<p><b>' . ucfirst( $label ) . '</b>: ' . $value . '</p>';
-		}
-	}
+	$text = 'Your name is ' . $_POST['name'] . "\r\n" .
+	'message is ' . $_POST['message'];
+
+	$headers = 'From: ' . $_POST['email'] . "\r\n" .
+	'Reply-To: ' . $_POST['email'] . "\r\n" .
+	'X-Mailer: PHP/' . phpversion();
+
+	mail('user@example.com', 'Submit form', $text, $headers);
 } 
 
 ?>
